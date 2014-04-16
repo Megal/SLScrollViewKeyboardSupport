@@ -264,11 +264,8 @@ char *const SLScrollViewKeyboardSupportOriginalScrollIndicatorInsets;
         scrollView.contentInset = UIEdgeInsetsByAddingInsets(originalEdgeInsets, additionsEdgeInsets);
         scrollView.scrollIndicatorInsets = UIEdgeInsetsByAddingInsets(originalScrollIndicatorInsets, additionsEdgeInsets);
         scrollView.SLScrollViewKeyboardSupport_contentOffsetChangeIsExpected = NO;
-        
-        if (CGRectIntersectsRect(responderFrame, keyboardFrame)) {
-            CGFloat offset = CGRectGetMaxY(responderFrame) - CGRectGetHeight(scrollView.frame) + CGRectGetHeight(keyboardFrame);
-            [scrollView setContentOffset:CGPointMake(0.0f, offset) animated:NO];
-        }
+
+		[scrollView scrollRectToVisible:responderFrame animated:NO];
     } completion:NULL];
 }
 
